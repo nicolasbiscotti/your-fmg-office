@@ -1,9 +1,8 @@
-import { Meeting } from "./Meeting";
+import Meeting from "./Meeting";
+import MeetingNumber from "./MeetingNumber";
 
-export interface MeetingRepository {
-  find: (meetingNumber: string) => Meeting;
-
+export default interface MeetingRepository {
+  find: (meetingNumber: MeetingNumber) => Meeting;
   booking: (meeting: Meeting) => void;
-
   update: (meeting: Meeting) => void;
 }

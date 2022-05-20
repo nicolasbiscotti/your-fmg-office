@@ -1,5 +1,6 @@
 import AddPatientResponseBuilder from "../../builders/AddPatientResponseBuilder";
 import Patient from "../../domain/patients/Patient";
+import PatientBirth from "../../domain/patients/PatientBirth";
 import PatientName from "../../domain/patients/PatientName";
 import PatientNumberGenerator from "../../domain/patients/PatientNumberGenerator";
 import PatientRepository from "../../domain/patients/PatientRepository";
@@ -22,7 +23,8 @@ class AddPatientUseCase
 
   handle(request: AddPatientRequest): AddPatientResponse {
     const patientName = this.getPatientName(request);
-    const patient = this.createPatient(patientName);
+    const patientBirth = this.getPatientBirth(request);
+    const patient = this.createPatient(patientName, patientBirth);
     this.patientRepository.add(patient);
     return this.getResponse(patient);
   }
@@ -31,15 +33,21 @@ class AddPatientUseCase
     return PatientName.of(request.firstName, request.lastName);
   }
 
-  createPatient(patientName: PatientName) {
+  getPatientBirth(request: AddPatientRequest): PatientBirth {
+    return PatientBirth.of(request.dateOfBirth);
+  }
+
+  createPatient(patientName: PatientName, patientBirth: PatientBirth) {
     const patientNumber = this.patientNumberGenerator.next();
-    return new Patient(patientNumber, patientName);
+    return new Patient(patientNumber, patientName, patientBirth);
   }
 
   getResponse(patient: Patient) {
     const patientNumber = patient.getPatientNumber().toString();
+    const patientName = patient.getPatientName().toString();
     return AddPatientResponseBuilder.builder()
       .patientNumber(patientNumber)
+      .patientName(patientName)
       .build();
   }
 }

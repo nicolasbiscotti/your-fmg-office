@@ -6,10 +6,6 @@ export class AddPatientRequestBuilder {
   private static readonly DEFAULT_DATE_OF_BIRTH = "16-05-1985";
   private static readonly DEFAULT_EMAIL = "nicolas.biscotti@gmail.com";
 
-  static builder(): AddPatientRequestBuilder {
-    return new AddPatientRequestBuilder();
-  }
-
   private readonly request: AddPatientRequest;
 
   constructor() {
@@ -19,6 +15,10 @@ export class AddPatientRequestBuilder {
       dateOfBirth: AddPatientRequestBuilder.DEFAULT_DATE_OF_BIRTH,
       email: AddPatientRequestBuilder.DEFAULT_EMAIL,
     };
+  }
+
+  static builder(): AddPatientRequestBuilder {
+    return new AddPatientRequestBuilder();
   }
 
   firstName(firstName: string): AddPatientRequestBuilder {

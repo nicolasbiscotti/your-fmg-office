@@ -1,25 +1,29 @@
-import { Meeting } from "../../../core/domain/meetings/Meeting";
-import { MeetingRepository } from "../../../core/domain/meetings/MeetingRepository";
+import RepositoryExecption from "../../../core/domain/exceptions/RepositoryException";
+import RepositoryMessages from "../../../core/domain/exceptions/RepositoryMessages";
+import Meeting from "../../../core/domain/meetings/Meeting";
+import MeetingNumber from "../../../core/domain/meetings/MeetingNumber";
+import MeetingRepository from "../../../core/domain/meetings/MeetingRepository";
 
 class FakeMeetingRepository implements MeetingRepository {
-  meetingList: Map<string, Meeting>;
+  private readonly repository: Map<MeetingNumber, Meeting>;
 
   constructor() {
-    this.meetingList = new Map();
+    this.repository = new Map();
   }
 
-  find(meetNumber: string): Meeting {
-    const meeting = this.meetingList.get(meetNumber);
-    if (meeting !== undefined) {
+  find(meetNumber: MeetingNumber): Meeting {
+    const meeting = this.repository.get(meetNumber);
+    if (meeting) {
       return meeting;
     }
-    const err = new Error("Meeting not found");
-    err.name = "NON EXISTING MEET NUMBER"
-    throw new Error();
+    throw new RepositoryExecption(
+      RepositoryMessages.REPOSITORY_DOES_NOT_CONTAIN_THE_REQUESTED
+    );
   }
 
   booking(meeting: Meeting): void {
-    this.meetingList.set(meeting.doctorNumber, meeting);
+    const meetingNumber = meeting.getMeetNumber()
+    this.repository.set(meetingNumber, meeting);
   }
 
   update(meeting: Meeting): void {}

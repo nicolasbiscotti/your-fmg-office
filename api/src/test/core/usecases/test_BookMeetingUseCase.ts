@@ -1,10 +1,11 @@
 import { assert } from "chai";
-import BookMeetingRequest from "../../../main/core/usecases/book-meeting/BookMeetingRequest";
+import BookMeetingRequestBuilder from "../../../main/core/builders/requests/BookMeetingRequestBuilder";
+import MeetingRepository from "../../../main/core/domain/meetings/MeetingRepository";
 import BookMeetingUseCase from "../../../main/core/usecases/book-meeting/BookMeetingUseCase";
 import FakeMeetingRepository from "../../../main/infra/fake/meetings/FakeMeetingRepository";
 
-describe("BookMeetingUseCase", () => {
-  let repository: FakeMeetingRepository;
+describe("BookMeetingUseCaseTest", () => {
+  let repository: MeetingRepository;
   let useCase: BookMeetingUseCase;
 
   beforeEach(() => {
@@ -16,21 +17,10 @@ describe("BookMeetingUseCase", () => {
     describe("WHEN a user try book a meeting with a valid request", () => {
       it("THEN should succefully book a new meeting", () => {
         // arrange
-        const request = new BookMeetingRequest(
-          "16-05-2022",
-          "16:45",
-          "02ls45",
-          "58po78",
-          "002"
-        );
-        const expected = "002";
-
-        // act
-        useCase.handle(request);
-        const actual = repository.find("002").meetNumber;
-
-        // assert
-        assert.deepEqual(actual, expected);
+        const request = BookMeetingRequestBuilder.builder()
+          .meetNumber("002")
+          .build();
+        
       });
     });
   });

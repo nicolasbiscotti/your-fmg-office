@@ -1,5 +1,5 @@
 import { Guard } from "../common/Guard";
-import ValidationMessages from "../errors/ValidationMessages";
+import ValidationMessages from "../exceptions/ValidationMessages";
 import Text from "./Text";
 
 export default class PatientName {
@@ -7,10 +7,10 @@ export default class PatientName {
   private lastName: Text;
 
   constructor(firstName: Text, lastName: Text) {
-    Guard.guard(firstName).againstNullOrWhitespace(
+    Guard.guardText(firstName).againstNullOrWhitespace(
       ValidationMessages.FIRST_NAME_EMPTY
     );
-    Guard.guard(lastName).againstNullOrWhitespace(
+    Guard.guardText(lastName).againstNullOrWhitespace(
       ValidationMessages.LAST_NAME_EMPTY
     );
     this.firstName = firstName;
@@ -26,6 +26,6 @@ export default class PatientName {
   }
 
   toString(): string {
-    return this.getFullName().value;
+    return this.getFullName().getValue();
   }
 }

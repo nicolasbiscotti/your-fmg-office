@@ -1,4 +1,5 @@
-import ValidationError from "../../errors/ValidationError";
+import ValidationException from "../../exceptions/ValidationException";
+
 
 export default class BaseGuard<T> {
   protected value: T;
@@ -9,7 +10,7 @@ export default class BaseGuard<T> {
 
   protected against(test: boolean, message: string): void {
     if (test) {
-      throw new ValidationError(message);
+      throw new ValidationException(message);
     }
   }
 }

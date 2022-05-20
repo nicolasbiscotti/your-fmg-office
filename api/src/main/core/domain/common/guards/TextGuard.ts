@@ -9,4 +9,8 @@ export default class TextGuard extends BaseGuard<Text> {
   againstNullOrWhitespace(message: string): void {
     this.against(this.value.isNullOrWhiteSpace(), message);
   }
+
+  againtNotLongerThan(message: string): void {
+    this.against(this.value.isLongerThanAllowed(), message);
+  }
 }

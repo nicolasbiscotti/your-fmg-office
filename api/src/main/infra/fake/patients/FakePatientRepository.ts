@@ -1,3 +1,5 @@
+import RepositoryExecption from "../../../core/domain/exceptions/RepositoryException";
+import RepositoryMessages from "../../../core/domain/exceptions/RepositoryMessages";
 import Patient from "../../../core/domain/patients/Patient";
 import PatientNumber from "../../../core/domain/patients/PatientNumber";
 import PatientRepository from "../../../core/domain/patients/PatientRepository";
@@ -15,7 +17,9 @@ export default class FakePatientRepository implements PatientRepository {
       const clonedPatient = Patient.of(patient);
       return clonedPatient;
     }
-    throw new Error("No patient was found");
+    throw new RepositoryExecption(
+      RepositoryMessages.REPOSITORY_DOES_NOT_CONTAIN_THE_REQUESTED
+    );
   };
 
   add = (patient: Patient) => {
@@ -26,7 +30,9 @@ export default class FakePatientRepository implements PatientRepository {
       this.repository.set(patientNumber, clonedPatient);
     }
 
-    throw new Error("Repositori constraint violation");
+    throw new RepositoryExecption(
+      RepositoryMessages.REPOSITORY_CONSTRAINT_VIOLATION
+    );
   };
   update = (patient: Patient) => {
     const patientNumber = patient.getPatientNumber();
@@ -36,7 +42,9 @@ export default class FakePatientRepository implements PatientRepository {
       this.repository.set(patientNumber, clonedPatient);
     }
 
-    throw new Error("No patient was found to be update");
+    throw new RepositoryExecption(
+      RepositoryMessages.REPOSITORY_CANNOT_UPDATE_NON_EXISTENT
+    );
   };
 
   contains = (patientNumber: PatientNumber) =>

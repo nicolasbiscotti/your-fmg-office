@@ -1,4 +1,4 @@
-import { MeetingRepository } from "../../domain/meetings/MeetingRepository";
+import MeetingRepository from "../../domain/meetings/MeetingRepository";
 import { VoidUseCase } from "../VoidUseCase";
 import BookMeetingRequest from "./BookMeetingRequest";
 
