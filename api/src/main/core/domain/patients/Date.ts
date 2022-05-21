@@ -19,6 +19,10 @@ export default class Date {
     );
   }
 
+  isNotValid(): boolean {
+    return !this.isValid();
+  }
+
   getValue(): string {
     return this.value;
   }

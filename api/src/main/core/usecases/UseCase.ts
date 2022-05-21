@@ -1,3 +1,3 @@
-interface UseCase<Req, Res> {
+export default interface UseCase<Req, Res> {
   handle: (request: Req) => Res;
 }

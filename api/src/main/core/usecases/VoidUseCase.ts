@@ -1,3 +1,3 @@
-export interface VoidUseCase<Req> {
+export default interface VoidUseCase<Req> {
   handle: (request: Req) => void;
 }

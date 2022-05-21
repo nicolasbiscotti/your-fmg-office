@@ -26,14 +26,15 @@ export default class FakePatientRepository implements PatientRepository {
     const patientNumber = patient.getPatientNumber();
     const clonedPatient = Patient.of(patient);
 
-    if (!this.contains(patientNumber)) {
+    if (this.contains(patientNumber)) {
+      throw new RepositoryExecption(
+        RepositoryMessages.REPOSITORY_CONSTRAINT_VIOLATION
+      );
+    } else {
       this.repository.set(patientNumber, clonedPatient);
     }
-
-    throw new RepositoryExecption(
-      RepositoryMessages.REPOSITORY_CONSTRAINT_VIOLATION
-    );
   };
+  
   update = (patient: Patient) => {
     const patientNumber = patient.getPatientNumber();
 

@@ -4,6 +4,7 @@ import PatientBirth from "../../domain/patients/PatientBirth";
 import PatientName from "../../domain/patients/PatientName";
 import PatientNumberGenerator from "../../domain/patients/PatientNumberGenerator";
 import PatientRepository from "../../domain/patients/PatientRepository";
+import UseCase from "../UseCase";
 import AddPatientRequest from "./AddPatientRequest";
 import AddPatientResponse from "./AddPatientResponse";
 

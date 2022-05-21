@@ -7,6 +7,6 @@ export default class DateGuard extends BaseGuard<Date> {
   }
 
   againstInvalidDate(message: string): void {
-    this.against(this.value.isValid(), message);
+    this.against(this.value.isNotValid(), message);
   }
 }

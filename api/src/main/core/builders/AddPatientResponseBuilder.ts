@@ -1,8 +1,12 @@
 import AddPatientResponse from "../usecases/add-patient/AddPatientResponse";
 
+export function anAddPatientResponse(): AddPatientResponseBuilder {
+  return new AddPatientResponseBuilder();
+}
+
 export default class AddPatientResponseBuilder {
   private static readonly DEFAULT_PATIENT_NUMBER = "02dfggdf02saasdfv";
-  private static readonly DEFAULT_PATIENT_NAME = "Nicolás Biscotti";
+  private static readonly DEFAULT_PATIENT_NAME = "Manuel Biscotti";
 
   private readonly response: AddPatientResponse;
 

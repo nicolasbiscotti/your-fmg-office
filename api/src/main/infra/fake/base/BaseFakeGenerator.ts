@@ -1,4 +1,6 @@
 import Generator from "../../../core/domain/base/Generator";
+import FakeException from "../exceptions/FakeException";
+import FakeMessages from "../exceptions/FakeMessages";
 
 export default class BaseFakeGenerator<T> implements Generator<T> {
   private readonly queue: Array<T>;
@@ -12,7 +14,7 @@ export default class BaseFakeGenerator<T> implements Generator<T> {
     if (next !== undefined) {
       return next;
     }
-    throw new Error("Generator does not have next");
+    throw new FakeException(FakeMessages.GENERATOR_DOES_NOT_HAVE_NEXT);
   }
 
   add(values: Array<T>) {
