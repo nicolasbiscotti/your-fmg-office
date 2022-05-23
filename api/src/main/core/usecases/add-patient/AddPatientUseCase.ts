@@ -11,8 +11,8 @@ import AddPatientResponse from "./AddPatientResponse";
 class AddPatientUseCase
   implements UseCase<AddPatientRequest, AddPatientResponse>
 {
-  patientNumberGenerator: PatientNumberGenerator;
-  patientRepository: PatientRepository;
+  private patientNumberGenerator: PatientNumberGenerator;
+  private patientRepository: PatientRepository;
 
   constructor(
     patientNumberGenerator: PatientNumberGenerator,
@@ -30,20 +30,20 @@ class AddPatientUseCase
     return this.getResponse(patient);
   }
 
-  getPatientName(request: AddPatientRequest): PatientName {
+  private getPatientName(request: AddPatientRequest): PatientName {
     return PatientName.of(request.firstName, request.lastName);
   }
 
-  getPatientBirth(request: AddPatientRequest): PatientBirth {
+  private getPatientBirth(request: AddPatientRequest): PatientBirth {
     return PatientBirth.of(request.dateOfBirth);
   }
 
-  createPatient(patientName: PatientName, patientBirth: PatientBirth) {
+  private createPatient(patientName: PatientName, patientBirth: PatientBirth) {
     const patientNumber = this.patientNumberGenerator.next();
     return new Patient(patientNumber, patientName, patientBirth);
   }
 
-  getResponse(patient: Patient) {
+  private getResponse(patient: Patient) {
     const patientNumber = patient.getPatientNumber().toString();
     const patientName = patient.getPatientName().toString();
     return AddPatientResponseBuilder.builder()

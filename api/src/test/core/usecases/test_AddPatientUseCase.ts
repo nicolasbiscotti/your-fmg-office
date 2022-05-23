@@ -1,17 +1,21 @@
-import { assert } from "chai";
 import { anAddPatientResponse } from "../../../main/core/builders/AddPatientResponseBuilder";
+import PatientNumber from "../../../main/core/domain/patients/PatientNumber";
 import PatientRepository from "../../../main/core/domain/patients/PatientRepository";
 import AddPatientUseCase from "../../../main/core/usecases/add-patient/AddPatientUseCase";
 import FakePatientNumberGenerator from "../../../main/infra/fake/patients/FakePatientNumberGenerator";
 import FakePatientRepository from "../../../main/infra/fake/patients/FakePatientRepository";
 import { anAddPatientRequest } from "../common/builders/requests/AddPatientRequest";
 import { givenThatGenerator } from "../common/Givens";
-import { verifyThatUseCase } from "../common/Verifications";
+import {
+  verifyThatRepository,
+  verifyThatUseCase,
+} from "../common/Verifications";
 
 describe("AddPatientUseCaseTest", () => {
   let patientNumberGenerator: FakePatientNumberGenerator;
   let patientRepository: PatientRepository;
   let addPatientUseCase: AddPatientUseCase;
+
   const patientData = {
     firstName: "Nicolás",
     lastName: "Biscotti",
@@ -29,7 +33,7 @@ describe("AddPatientUseCaseTest", () => {
     );
   });
 
-  it("should open an accont given a valid request", () => {
+  it("should add a patient given a valid request", () => {
     givenThatGenerator(patientNumberGenerator).willGenerate(
       patientData.generatedPatientNumber
     );
@@ -48,5 +52,7 @@ describe("AddPatientUseCaseTest", () => {
     verifyThatUseCase(addPatientUseCase)
       .withRequest(request)
       .shouldReturnReponse(expectedResponse);
+
+    verifyThatRepository(patientRepository).shouldContain(patientData);
   });
 });

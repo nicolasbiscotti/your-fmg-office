@@ -9,7 +9,7 @@ export default class PatientRepositoryGiven {
   }
 
   alreadyHasPatient(patientNumber: string): void {
-    const patient = PatientBuilder.builder()
+    const patient = PatientBuilder.aPatient()
       .patientNumber(patientNumber)
       .build();
     this.repository.add(patient);

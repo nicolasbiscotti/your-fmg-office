@@ -6,20 +6,20 @@ import PatientRepository from "../../../core/domain/patients/PatientRepository";
 import Optional from "../../../util/Optional";
 
 export default class FakePatientRepository implements PatientRepository {
-  private readonly repository: Map<PatientNumber, Patient>;
+  private readonly repository: Map<string, Patient>;
 
   constructor() {
     this.repository = new Map();
   }
 
   find = (patientNumber: PatientNumber): Optional<Patient> => {
-    const patient = this.repository.get(patientNumber);
+    const patient = this.repository.get(patientNumber.toString());
 
     if (patient) {
       const clonedPatient = Patient.of(patient);
       return Optional.of(clonedPatient);
     }
-    
+
     return Optional.empty();
   };
 
@@ -27,21 +27,21 @@ export default class FakePatientRepository implements PatientRepository {
     const patientNumber = patient.getPatientNumber();
     const clonedPatient = Patient.of(patient);
 
-    if (this.contains(patientNumber)) {
+    if (this.contains(patientNumber.toString())) {
       throw new RepositoryExecption(
         RepositoryMessages.REPOSITORY_CONSTRAINT_VIOLATION
       );
     } else {
-      this.repository.set(patientNumber, clonedPatient);
+      this.repository.set(patientNumber.toString(), clonedPatient);
     }
   };
 
   update = (patient: Patient): void => {
     const patientNumber = patient.getPatientNumber();
 
-    if (this.contains(patientNumber)) {
+    if (this.contains(patientNumber.toString())) {
       const clonedPatient = Patient.of(patient);
-      this.repository.set(patientNumber, clonedPatient);
+      this.repository.set(patientNumber.toString(), clonedPatient);
     }
 
     throw new RepositoryExecption(
@@ -49,6 +49,5 @@ export default class FakePatientRepository implements PatientRepository {
     );
   };
 
-  contains = (patientNumber: PatientNumber): boolean =>
-    this.repository.has(patientNumber);
+  contains = (number: string): boolean => this.repository.has(number);
 }

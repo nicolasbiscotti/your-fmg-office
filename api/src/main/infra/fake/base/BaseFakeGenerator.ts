@@ -10,7 +10,7 @@ export default class BaseFakeGenerator<T> implements Generator<T> {
   }
 
   next(): T {
-    const next = this.queue[0];
+    const next = this.queue.shift();
     if (next !== undefined) {
       return next;
     }

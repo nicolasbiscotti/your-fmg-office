@@ -16,7 +16,7 @@ export default class PatientBuilder {
     };
   }
 
-  static builder(): PatientBuilder {
+  static aPatient(): PatientBuilder {
     return new PatientBuilder();
   }
 
