@@ -1,24 +1,26 @@
 export default class Optional<T> {
   private value: T;
+  private isEmpty: boolean;
 
-  constructor(value: T) {
+  constructor(value: T, isEmpty: boolean) {
+    this.isEmpty = isEmpty;
     this.value = value;
   }
 
-  static empty() {
-    return new Optional(null);
+  static empty<T>(): Optional<T> {
+    return new Optional(Object.create(null), true);
   }
 
-  static of<T>(value: T) {
-    return new Optional(value);
+  static of<T>(value: T): Optional<T> {
+    return new Optional(value, false);
   }
 
-  isPresent() {
-    return this.value !== null;
+  isPresent(): boolean {
+    return !this.isEmpty;
   }
 
-  get() {
-    if (this.value !== null) {
+  get(): T {
+    if (this.isPresent()) {
       return this.value;
     }
     throw new Error("No such element");
