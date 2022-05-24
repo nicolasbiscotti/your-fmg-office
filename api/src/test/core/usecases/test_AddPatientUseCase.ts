@@ -1,5 +1,5 @@
 import { anAddPatientResponse } from "../../../main/core/builders/AddPatientResponseBuilder";
-import PatientNumber from "../../../main/core/domain/patients/PatientNumber";
+import ValidationMessages from "../../../main/core/domain/exceptions/ValidationMessages";
 import PatientRepository from "../../../main/core/domain/patients/PatientRepository";
 import AddPatientUseCase from "../../../main/core/usecases/add-patient/AddPatientUseCase";
 import FakePatientNumberGenerator from "../../../main/infra/fake/patients/FakePatientNumberGenerator";
@@ -55,4 +55,16 @@ describe("AddPatientUseCaseTest", () => {
 
     verifyThatRepository(patientRepository).shouldContain(patientData);
   });
+
+  it("should throw an error given an empty first name", () => {
+    for (const firstName of ["", "   "]) {
+      const request = anAddPatientRequest().firstName(firstName).build();
+
+      verifyThatUseCase(addPatientUseCase)
+        .withRequest(request)
+        .shouldThrowValidationException(ValidationMessages.FIRST_NAME_EMPTY);
+    }
+  });
+
+
 });

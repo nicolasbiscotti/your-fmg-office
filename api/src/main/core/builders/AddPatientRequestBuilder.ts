@@ -3,7 +3,7 @@ import AddPatientRequest from "../usecases/add-patient/AddPatientRequest";
 export class AddPatientRequestBuilder {
   private static readonly DEFAULT_FIRSTNAME = "Nicolás";
   private static readonly DEFAULT_LASTNAME = "Biscotti";
-  private static readonly DEFAULT_DATE_OF_BIRTH = "16-05-1985";
+  private static readonly DEFAULT_DATE_OF_BIRTH = "1985-05-16";
   private static readonly DEFAULT_EMAIL = "nicolas.biscotti@gmail.com";
 
   private readonly request: AddPatientRequest;
