@@ -66,5 +66,13 @@ describe("AddPatientUseCaseTest", () => {
     }
   });
 
+  it("should throw an error given an empty last name", () => {
+    for (const lastName of ["", "   "]) {
+      const request = anAddPatientRequest().lastName(lastName).build();
 
+      verifyThatUseCase(addPatientUseCase)
+        .withRequest(request)
+        .shouldThrowValidationException(ValidationMessages.LAST_NAME_EMPTY);
+    }
+  });
 });
