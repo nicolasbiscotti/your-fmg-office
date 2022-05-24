@@ -1,9 +1,9 @@
-import { anAddPatientResponse } from "../../../main/core/builders/AddPatientResponseBuilder";
-import ValidationMessages from "../../../main/core/domain/exceptions/ValidationMessages";
-import PatientRepository from "../../../main/core/domain/patients/PatientRepository";
-import AddPatientUseCase from "../../../main/core/usecases/add-patient/AddPatientUseCase";
-import FakePatientNumberGenerator from "../../../main/infra/fake/patients/FakePatientNumberGenerator";
-import FakePatientRepository from "../../../main/infra/fake/patients/FakePatientRepository";
+import { anAddPatientResponse } from "../../../../main/app/core/builders/AddPatientResponseBuilder";
+import ValidationMessages from "../../../../main/app/core/domain/exceptions/ValidationMessages";
+import PatientRepository from "../../../../main/app/core/domain/patients/PatientRepository";
+import AddPatientUseCase from "../../../../main/app/core/usecases/add-patient/AddPatientUseCase";
+import FakePatientNumberGenerator from "../../../../main/app/infra/fake/patients/FakePatientNumberGenerator";
+import FakePatientRepository from "../../../../main/app/infra/fake/patients/FakePatientRepository";
 import { anAddPatientRequest } from "../common/builders/requests/AddPatientRequest";
 import { givenThatGenerator } from "../common/Givens";
 import {

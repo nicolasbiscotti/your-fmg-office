@@ -1,7 +1,8 @@
-import Patient from "../../../../../main/core/domain/patients/Patient";
-import PatientBirth from "../../../../../main/core/domain/patients/PatientBirth";
-import PatientName from "../../../../../main/core/domain/patients/PatientName";
-import PatientNumber from "../../../../../main/core/domain/patients/PatientNumber";
+
+import Patient from "../../../../../../main/app/core/domain/patients/Patient";
+import PatientBirth from "../../../../../../main/app/core/domain/patients/PatientBirth";
+import PatientName from "../../../../../../main/app/core/domain/patients/PatientName";
+import PatientNumber from "../../../../../../main/app/core/domain/patients/PatientNumber";
 
 export default class PatientBuilder {
   private readonly patient;

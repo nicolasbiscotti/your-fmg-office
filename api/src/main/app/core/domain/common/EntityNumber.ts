@@ -1,13 +1,14 @@
 import { Guard } from "../common/Guard";
 import ValidationMessages from "../exceptions/ValidationMessages";
-import Text from "./Text";
+import Text from "../patients/Text";
+
 
 export default class PatientNumber {
   private value: Text;
 
   constructor(value: Text) {
     Guard.guardText(value).againstNullOrWhitespace(
-      ValidationMessages.ACCOUNT_NUMBER_EMPTY
+      ValidationMessages.PATIENT_NUMBER_EMPTY
     );
     this.value = value;
   }

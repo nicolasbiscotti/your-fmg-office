@@ -1,4 +1,4 @@
-import UseCase from "../../../../main/core/usecases/UseCase";
+import UseCase from "../../../../../main/app/core/usecases/UseCase";
 import UseCaseRequestVerify from "./UseCaseRequestVerify";
 
 export default class UseCaseVerify<Req, Res> {

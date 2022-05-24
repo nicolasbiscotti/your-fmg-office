@@ -1,8 +1,8 @@
 import { assert } from "chai";
-import Patient from "../../../../main/core/domain/patients/Patient";
-import PatientNumber from "../../../../main/core/domain/patients/PatientNumber";
-import PatientRepository from "../../../../main/core/domain/patients/PatientRepository";
-import Optional from "../../../../main/util/Optional";
+import Patient from "../../../../../main/app/core/domain/patients/Patient";
+import PatientNumber from "../../../../../main/app/core/domain/patients/PatientNumber";
+import PatientRepository from "../../../../../main/app/core/domain/patients/PatientRepository";
+import Optional from "../../../../../main/app/util/Optional";
 import PatientBuilder from "../builders/entities/PatientBuilder";
 
 interface PatientData {

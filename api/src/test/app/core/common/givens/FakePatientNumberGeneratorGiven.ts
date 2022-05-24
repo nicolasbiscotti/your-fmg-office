@@ -1,5 +1,5 @@
-import PatientNumber from "../../../../main/core/domain/patients/PatientNumber";
-import FakePatientNumberGenerator from "../../../../main/infra/fake/patients/FakePatientNumberGenerator";
+import PatientNumber from "../../../../../main/app/core/domain/patients/PatientNumber";
+import FakePatientNumberGenerator from "../../../../../main/app/infra/fake/patients/FakePatientNumberGenerator";
 
 export default class FakePatientNumberGeneratorGiven {
   private generator: FakePatientNumberGenerator;

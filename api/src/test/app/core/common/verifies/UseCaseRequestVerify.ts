@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import UseCase from "../../../../main/core/usecases/UseCase";
+import UseCase from "../../../../../main/app/core/usecases/UseCase";
 
 export default class UseCaseRequestVerify<Req, Res> {
   private useCase: UseCase<Req, Res>;

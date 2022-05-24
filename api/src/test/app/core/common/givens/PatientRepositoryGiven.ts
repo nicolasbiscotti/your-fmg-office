@@ -1,4 +1,4 @@
-import PatientRepository from "../../../../main/core/domain/patients/PatientRepository";
+import PatientRepository from "../../../../../main/app/core/domain/patients/PatientRepository";
 import PatientBuilder from "../builders/entities/PatientBuilder";
 
 export default class PatientRepositoryGiven {

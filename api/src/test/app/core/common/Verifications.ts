@@ -1,5 +1,5 @@
-import PatientRepository from "../../../main/core/domain/patients/PatientRepository";
-import UseCase from "../../../main/core/usecases/UseCase";
+import PatientRepository from "../../../../main/app/core/domain/patients/PatientRepository";
+import UseCase from "../../../../main/app/core/usecases/UseCase";
 import PatientRepositoryVerify from "./verifies/PatientRepositoryVerify";
 import UseCaseVerify from "./verifies/UseCaseVerify";
 

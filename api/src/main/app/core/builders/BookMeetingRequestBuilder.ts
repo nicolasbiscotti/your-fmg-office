@@ -1,4 +1,4 @@
-import BookMeetingRequest from "../../usecases/book-meeting/BookMeetingRequest";
+import BookMeetingRequest from "../usecases/book-meeting/BookMeetingRequest";
 
 class BookMeetingRequestBuilder {
   private readonly request: BookMeetingRequest;

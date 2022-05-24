@@ -1,5 +1,5 @@
-import PatientRepository from "../../../main/core/domain/patients/PatientRepository";
-import FakePatientNumberGenerator from "../../../main/infra/fake/patients/FakePatientNumberGenerator";
+import PatientRepository from "../../../../main/app/core/domain/patients/PatientRepository";
+import FakePatientNumberGenerator from "../../../../main/app/infra/fake/patients/FakePatientNumberGenerator";
 import FakePatientNumberGeneratorGiven from "./givens/FakePatientNumberGeneratorGiven";
 import PatientRepositoryGiven from "./givens/PatientRepositoryGiven";
 
