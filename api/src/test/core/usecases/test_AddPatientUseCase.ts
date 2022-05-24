@@ -75,4 +75,20 @@ describe("AddPatientUseCaseTest", () => {
         .shouldThrowValidationException(ValidationMessages.LAST_NAME_EMPTY);
     }
   });
+
+  it("should throw an error given an invalid date", () => {
+    for (const dateOfBirth of [
+      "1900-11-16",
+      "2023-12-15",
+      "1985-28-12",
+      "1983-08-32",
+      "16-05-1985",
+    ]) {
+      const request = anAddPatientRequest().dateOfBirth(dateOfBirth).build();
+
+      verifyThatUseCase(addPatientUseCase)
+        .withRequest(request)
+        .shouldThrowValidationException(ValidationMessages.DATE_IS_NOT_VALID);
+    }
+  });
 });
